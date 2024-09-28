@@ -1,0 +1,119 @@
+/* Ensure to include the correct Font Awesome CSS file */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-icon {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-menu {
+    margin-top: 50px; /* Adjust this value to move the menu items downwards */
+  }
+
+  .user-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 20px 10px; /* Shift the circle 10px to the right */
+  }
+  
+  .sidebar-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar-menu li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-menu a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-menu a i {
+    margin-right: 10px;
+  }
+  .sidebar-menu a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* For smooth hover effect */
+  }
+  
+  .sidebar-menu a:hover {
+    background-color: #555; /* Change the background color on hover */
+    color: #fff; /* Change the text color on hover */
+  }
+  
+  .sidebar-menu a.active {
+    background-color: #444;
+  }
+  
+  .sidebar-menu i {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .sidebar-menu span {
+    font-size: 16px;
+  }
+  .sidebar-logout {
+    margin-top: auto; /* Ensures the logout button stays at the bottom */
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .sidebar-logout a {
+    color: #fff; /* White text color for logout button */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #A94064; /* Red background for logout button */
+    border-radius: 5px;
+  }
+  
+  .sidebar-logout a:hover {
+    background-color: #E75480; /* Darker red on hover */
+  }
+  
+  .sidebar-icon.user-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #555; /* Adjust circle background */
+    color: #fff; /* White text color */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }

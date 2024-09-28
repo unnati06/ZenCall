@@ -1,0 +1,17 @@
+.time-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+  }
+  
+  .greeting {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .time {
+    margin: 0;
+  }
+  

@@ -1,0 +1,23 @@
+/* src/styles/Dashboard.css */
+
+.dashboard.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+  
+  .side {
+    width: 250px; /* adjust the width of the sidebar as needed */
+    background-color: #333; /* add a background color to the sidebar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mainbar {
+    flex: 1; /* take up the remaining space */
+    padding: 20px;
+    overflow-y: auto; /* add a scrollbar if the content overflows */
+    
+  }
+  

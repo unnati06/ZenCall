@@ -5,6 +5,8 @@ const socketIo = require('socket.io');
 const router = require("./routers/auth-router");
 const connectDb = require("./utils/db");
 const cookieParser = require("cookie-parser");
+const path = require('path');
+
 
 const app = express();
 const PORT = 5000;

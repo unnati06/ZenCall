@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm install --prefix ./client && npm run build-client && npm install",
-  "build-client": "npm run build --prefix ./client"
+    "build-client": "npm run build --prefix ./client"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "mongoose": "^8.6.1",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.4",
+    "path": "^0.12.7",
     "socket.io": "^4.7.5",
     "uuid": "^10.0.0",
     "zod": "^3.23.8"

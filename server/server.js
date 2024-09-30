@@ -9,9 +9,12 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = 5000;
 
+
+
 app.use(cookieParser('your-secret-key'));
 
-app.use(express.json()); 
+app.use(express.json());
+
 app.use(cors({
   origin: 'http://localhost:5173', // Adjust the origin as needed
   methods: ['GET', 'POST'],
@@ -27,6 +30,11 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", router);
 
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
+
+app.get("*",(req,res)=> 
+  res.sendFile(path.join(__dirname, "/client/dist/index.html"))
+)
 
 // Create the HTTP server
 const server = http.createServer(app);

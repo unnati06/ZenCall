@@ -132,7 +132,7 @@ const Options = ({ children }) => {
   
     try {
       // Step 1: Upload recording to the server
-      const uploadResponse = await fetch('http://localhost:5000/upload', {
+      const uploadResponse = await fetch('https://zencall.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
@@ -146,7 +146,7 @@ const Options = ({ children }) => {
       }
   
       // Step 2: Save recording URL with the user ID
-      const saveResponse = await fetch('http://localhost:5000/saveRecording', {
+      const saveResponse = await fetch('https://zencall.onrender.com/saveRecording', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

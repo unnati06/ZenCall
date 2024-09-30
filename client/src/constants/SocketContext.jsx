@@ -5,7 +5,7 @@ import Peer from 'simple-peer';
 const SocketContext = createContext();
 
 // Set up socket connection
-const socket = io('http://localhost:5000'); // Change this to your server's URL
+const socket = io('https://zencall.onrender.com'); // Change this to your server's URL
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);

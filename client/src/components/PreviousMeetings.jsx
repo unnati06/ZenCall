@@ -11,7 +11,7 @@ const PreviousMeetings = () => {
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/auth/${user._id}/previousmeetings`);
+        const response = await axios.get(`https://zencall.onrender.com/api/auth/${user._id}/previousmeetings`);
         if (isMounted) {
           setMeetings(response.data.previousMeetings);
         }

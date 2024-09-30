@@ -18,7 +18,7 @@ app.use(cookieParser('your-secret-key'));
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Adjust the origin as needed
+  origin: '*', // Adjust the origin as needed
   methods: ['GET', 'POST'],
   credentials: true, // Use if your requests include cookies or credentials
 }));

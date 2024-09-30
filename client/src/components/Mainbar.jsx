@@ -30,7 +30,7 @@ const Mainbar = () => {
     const formattedDate = meetingDate.toISOString();
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/scheduled', {
+      const response = await fetch('https://zencall.onrender.com/api/auth/scheduled', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

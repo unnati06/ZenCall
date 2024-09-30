@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   // JWT authentication to get the currently logged-in user
   const userAuthentication = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/auth/user", {
+      const response = await axios.get("https://zencall.onrender.com/api/auth/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.status === 200) {
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     }
      console.log("user id hai ye", user._id);
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/${user._id}/scheduled-meetings`, {
+      const response = await axios.get(`https://zencall.onrender.com/api/auth/${user._id}/scheduled-meetings`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.status === 200) {

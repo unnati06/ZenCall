@@ -6,6 +6,7 @@ const router = require("./routers/auth-router");
 const connectDb = require("./utils/db");
 const cookieParser = require("cookie-parser");
 const path = require('path');
+const cloudinary = require('cloudinary');
 
 
 const app = express();

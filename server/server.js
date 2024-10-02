@@ -35,7 +35,7 @@ app.use("/api/auth", router);
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, './public','index.html'));
 });
 
 // Create the HTTP server

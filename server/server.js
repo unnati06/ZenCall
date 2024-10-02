@@ -11,6 +11,11 @@ const path = require('path');
 const app = express();
 const PORT = 5000;
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 
 app.use(cookieParser('your-secret-key'));
@@ -32,7 +37,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", router);
 
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './public','index.html'));

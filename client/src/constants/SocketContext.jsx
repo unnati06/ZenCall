@@ -3,9 +3,7 @@ import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
 const SocketContext = createContext();
-
-// Set up socket connection
-const socket = io('https://zencall.onrender.com'); // Change this to your server's URL
+const socket = io('https://zencall.onrender.com');
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);
@@ -14,28 +12,27 @@ const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState('');
+  const [isStreamReady, setIsStreamReady] = useState(false); // New flag
 
-  const myVideo = useRef();
-  const userVideo = useRef();
+  const myVideo = useRef(null);
+  const userVideo = useRef(null);
   const connectionRef = useRef();
 
-  // Request media and setup socket listeners
   useEffect(() => {
-    // Access user's camera and microphone
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-      .then((currentStream) => {
+    const initMedia = async () => {
+      try {
+        const currentStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        console.log('Stream initialized:', currentStream); // Debug
         setStream(currentStream);
-        // Assign the stream to myVideo once it's available
-        if (myVideo.current) {
-          myVideo.current.srcObject = currentStream;
-        }
-      })
-      .catch((error) => {
-        console.error('Error accessing media devices.', error);
+        setIsStreamReady(true); // Mark stream as ready
+      } catch (error) {
+        console.error('Error accessing media devices:', error);
         alert('Please allow access to the camera and microphone.');
-      });
+      }
+    };
 
-    // Socket listeners
+    initMedia();
+
     socket.on('me', (id) => {
       console.log('My socket ID:', id);
       setMe(id);
@@ -46,23 +43,14 @@ const ContextProvider = ({ children }) => {
       setCall({ isReceivingCall: true, from, name: callerName, signal });
     });
 
-    // Cleanup socket listeners on unmount
     return () => {
       socket.off('me');
       socket.off('callUser');
     };
   }, []);
 
-  // Assign stream to the video element once stream is set
-  useEffect(() => {
-    if (stream && myVideo.current) {
-      myVideo.current.srcObject = stream;
-    }
-  }, [stream]);
-
   const answerCall = () => {
     setCallAccepted(true);
-
     const peer = new Peer({ initiator: false, trickle: false, stream });
 
     peer.on('signal', (data) => {
@@ -70,14 +58,12 @@ const ContextProvider = ({ children }) => {
     });
 
     peer.on('stream', (currentStream) => {
-      // Assign the stream to userVideo when received
       if (userVideo.current) {
         userVideo.current.srcObject = currentStream;
       }
     });
 
     peer.signal(call.signal);
-
     connectionRef.current = peer;
   };
 
@@ -89,7 +75,6 @@ const ContextProvider = ({ children }) => {
     });
 
     peer.on('stream', (currentStream) => {
-      // Assign the stream to userVideo when received
       if (userVideo.current) {
         userVideo.current.srcObject = currentStream;
       }
@@ -97,7 +82,6 @@ const ContextProvider = ({ children }) => {
 
     socket.on('callAccepted', (signal) => {
       setCallAccepted(true);
-
       peer.signal(signal);
     });
 
@@ -106,10 +90,8 @@ const ContextProvider = ({ children }) => {
 
   const leaveCall = () => {
     setCallEnded(true);
-
-    connectionRef.current.destroy();
-
-    window.location.reload(); // Refresh the page to reset state
+    connectionRef.current?.destroy();
+    window.location.reload();
   };
 
   return (
@@ -127,9 +109,10 @@ const ContextProvider = ({ children }) => {
         callUser,
         leaveCall,
         answerCall,
+        isStreamReady, // Expose readiness
       }}
     >
-      {children}
+      {isStreamReady ? children : <div>Loading video stream...</div>} 
     </SocketContext.Provider>
   );
 };

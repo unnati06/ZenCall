@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../constants/AuthContext';
 import '../styles/Login.css';
 
-const URL = "https://zencall.onrender.com/api/auth/login";
+const URL = "https://zencall-server.onrender.com/api/auth/login";
 
 const Login = () => {
   const [user, setUser] = useState({

@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
 const SocketContext = createContext();
-const socket = io('https://zencall.onrender.com');
+const socket = io('https://zencall-server.onrender.com');
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);

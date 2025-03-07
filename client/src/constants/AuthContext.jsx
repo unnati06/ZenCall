@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   // JWT authentication to get the currently logged-in user
   const userAuthentication = async () => {
     try {
-      const response = await axios.get("https://zencall.onrender.com/api/auth/user", {
+      const response = await axios.get("https://zencall-server.onrender.com/api/auth/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.status === 200) {

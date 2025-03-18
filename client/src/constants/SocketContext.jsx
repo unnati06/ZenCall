@@ -88,10 +88,16 @@ const ContextProvider = ({ children }) => {
     connectionRef.current = peer;
   };
 
-  const leaveCall = () => {
+   const leaveCall = () => {
     setCallEnded(true);
-    connectionRef.current?.destroy();
-    window.location.reload();
+    if (connectionRef.current) {
+      connectionRef.current.destroy();
+    }
+    // Reset state instead of reloading
+    setCallAccepted(false);
+    setCall({});
+    setStream(null); // Optional: Clear stream
+    navigate('/dashboard'); // Redirect to dashboard
   };
 
   return (
